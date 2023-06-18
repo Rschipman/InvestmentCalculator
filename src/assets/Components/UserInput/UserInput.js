@@ -1,6 +1,15 @@
 const UserInput = () => {
+  const submitHandler = (e) => {
+    e.preventDefault();
+    //..
+  };
+
+  const resetHandler = () => {
+    //..
+  };
+
   return (
-    <form className="form">
+    <form onSubmit={submitHandler} className="form">
       <div className="input-group">
         <p>
           <label htmlFor="current-savings">Current Savings ($)</label>

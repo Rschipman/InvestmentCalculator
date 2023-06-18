@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Header from "./assets/Components/Header/Header.Js";
+import Header from "./assets/Components/Header/Header.js";
 import UserInput from "./assets/Components/UserInput/UserInput";
 import ResultsTable from "./assets/Components/ResultsTable/ResultsTable";
 
