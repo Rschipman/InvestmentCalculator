@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Header from "./assets/Components/Header/Header";
-import UserInput from "./assets/Components/UserInput/UserInput";
-import ResultsTable from "./assets/Components/ResultsTable/ResultsTable";
+import Header from "./Components/Header/Header";
+import UserInput from "./Components/UserInput/UserInput";
+import ResultsTable from "./Components/ResultsTable/ResultsTable";
 
 function App() {
   const calculateHandler = (userInput) => {
