@@ -1,13 +1,32 @@
-const UserInput = () => {
+import { useState } from "react";
+
+const initialUserInput = {
+  "current-savings": 1000,
+  "yearly-contribution": 1200,
+  "expected-return": 7,
+  duration: 10,
+};
+
+const UserInput = (props) => {
+  const [userInput, setUserInput] = useState(initialUserInput);
+
   const submitHandler = (e) => {
     e.preventDefault();
-    //..
+
+    props.onCalculate(userInput);
   };
 
   const resetHandler = () => {
-    //..
+    setUserInput(initialUserInput);
   };
-  const changeHandler = (input, value) => {};
+  const changeHandler = (input, value) => {
+    setUserInput((prevInput) => {
+      return {
+        ...prevInput,
+        [input]: +value,
+      };
+    });
+  };
 
   return (
     <form onSubmit={submitHandler} className="form">
@@ -18,6 +37,7 @@ const UserInput = () => {
             onChange={(event) =>
               changeHandler("current-savings", event.target.value)
             }
+            value={userInput["current-savings"]}
             type="number"
             id="current-savings"
           />
@@ -28,6 +48,7 @@ const UserInput = () => {
             onChange={(event) =>
               changeHandler("yearly-contribution", event.target.value)
             }
+            value={userInput["yearly-contribution"]}
             type="number"
             id="yearly-contribution"
           />
@@ -42,6 +63,7 @@ const UserInput = () => {
             onChange={(event) =>
               changeHandler("epected-return", event.target.value)
             }
+            value={userInput["expected-return"]}
             type="number"
             id="expected-return"
           />
@@ -50,6 +72,7 @@ const UserInput = () => {
           <label htmlFor="duration">Investment Duration (years)</label>
           <input
             onChange={(event) => changeHandler("duration", event.target.value)}
+            value={userInput["duration"]}
             type="number"
             id="duration"
           />
