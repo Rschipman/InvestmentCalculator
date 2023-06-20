@@ -4,10 +4,14 @@ import UserInput from "./Components/UserInput/UserInput";
 import ResultsTable from "./Components/ResultsTable/ResultsTable";
 
 function App() {
-  const [results, setResults] = useState(null);
+  const [userInput, setUserInput] = useState(null);
 
   const calculateHandler = (userInput) => {
-    const yearlyData = []; // per-year results
+    setUserInput(userInput);
+  };
+  const yearlyData = [];
+  if (userInput) {
+    // per-year results
 
     let currentSavings = +userInput["current-savings"];
     const yearlyContribution = +userInput["yearly-contribution"];
@@ -24,17 +28,19 @@ function App() {
         yearlyContribution: yearlyContribution,
       });
     }
-
-    setResults(yearlyData);
-  };
+  }
 
   return (
     <div>
       <Header />
       <UserInput onCalculate={calculateHandler} />
-      {/* Todo: Show below table conditionally (only once result data is available) */}
-      {/* Show fallback text if no data is available */}
-      <ResultsTable />
+      {!userInput && <p> No investment calculated yet</p>}
+      {userInput && (
+        <ResultsTable
+          data={yearlyData}
+          initialInvestment={userInput["current-savings"]}
+        />
+      )}
     </div>
   );
 }
